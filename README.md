@@ -9,7 +9,7 @@ Personal portfolio of **Napat Kasemweerasan**, a Computer Engineering student at
 
 ## 🔗 Live demo
 
-🔗 **Live site:** <!-- TODO: add deployed URL after Vercel deploy -->
+🔗 **Live site:** https://napat-sun-portfolio.vercel.app/
 
 ## 📸 Screenshots
 
@@ -108,9 +108,7 @@ The site is a static SPA, ready for Vercel:
 1. Import the repo in Vercel with the **Vite** framework preset.
 2. Build command: `npm run build` · Output directory: `dist/`
 3. Add `VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID`, and `VITE_EMAILJS_PUBLIC_KEY` in the Vercel dashboard (Project → Settings → Environment Variables).
-4. Production URL: <!-- TODO: add production URL after Vercel deploy -->
-
-After deploying, update `index.html`: set `og:url` to the production URL and switch `og:image` / `twitter:image` to absolute URLs on that domain so link previews resolve.
+4. Production URL: https://napat-sun-portfolio.vercel.app/
 
 ## 📚 Documentation
 

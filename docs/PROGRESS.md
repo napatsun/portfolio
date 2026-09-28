@@ -510,9 +510,7 @@ check · ➖ not applicable. Full table (tests.md order):
 - Open threads to close live: notice "ghost text" retest, narrow-bg report
   items (build freshness, zoom, computed widths), Safari grid/backdrop-filter.
 
-**Pre-launch TODOs (not code defects):** manual end-to-end Contact send test
-(EmailJS creds are now in `.env`); `og:url` deployed URL; `og:image` share
-asset (`public/og-image.png` 1200×630 added 2026-09-28 + `twitter:*` tags; switch to absolute URLs post-deploy); domain + hosting choice (specification.md §7 was never filled in). README.md rewritten 2026-09-28 from verified repo state — remaining placeholders: live-site URL, screenshots, production URL, license choice.
+**Deployed 2026-09-28:** live at https://napat-sun-portfolio.vercel.app/ — DONE since: `og:url` set, `og:image`/`twitter:image` switched to absolute URLs, `<link rel="canonical">` added (`index.html`), `public/robots.txt` added (allow-all, no sitemap — removes the old vite-preview robots-txt ambiguity), README live-site + production URLs filled (og reminder removed). **Still needs a human on the live site:** one manual Contact-form send, a Lighthouse re-run against the live URL, a Safari/Firefox check; README screenshots + license TODOs still open.
 
 ## 5. Former Open Item: GSAP — RESOLVED
 

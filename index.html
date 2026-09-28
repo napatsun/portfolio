@@ -12,9 +12,10 @@
       name="description"
       content="Portfolio of Napat Kasemweerasan, a Computer Engineering student at KMUTT passionate about applying Machine Learning to Quantitative Finance — uncovering patterns and generating value from data."
     />
-    <!-- Open Graph (step 10.4). og:url is still open pre-deployment:
-          TODO: set og:url to the real deployed URL before launch.
-         og:image points at public/og-image.png (1200x630, verified). -->
+    <!-- Canonical URL for the deployed site. -->
+    <link rel="canonical" href="https://napat-sun-portfolio.vercel.app/" />
+    <!-- Open Graph (step 10.4). Absolute URLs so social crawlers resolve them. -->
+    <meta property="og:url" content="https://napat-sun-portfolio.vercel.app/" />
     <meta
       property="og:title"
       content="Napat Kasemweerasan — Computer Engineering & ML/Quant Finance Portfolio"
@@ -24,7 +25,7 @@
       content="Computer Engineering student bridging Engineering, Machine Learning & Quantitative Finance — projects in ML forecasting, databases, and RAG chatbots."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image" content="https://napat-sun-portfolio.vercel.app/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/png" />
@@ -38,7 +39,7 @@
       name="twitter:description"
       content="Computer Engineering student bridging Engineering, Machine Learning & Quantitative Finance — projects in ML forecasting, databases, and RAG chatbots."
     />
-    <meta name="twitter:image" content="/og-image.png" />
+    <meta name="twitter:image" content="https://napat-sun-portfolio.vercel.app/og-image.png" />
     <script>
       // Apply the theme before first paint to avoid a flash of the wrong one.
       // Default is dark for first-time visitors; a saved 'light' still wins.
