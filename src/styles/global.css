@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Self-hosted fonts (step 10 perf follow-up: replaces the render-blocking
+ * Google Fonts <link>, ~900ms on mobile — no external DNS/connection, and
+ * @font-face inside the already-required CSS never blocks first paint).
+ * Variable woff2, latin subset only: these families carry no Thai glyphs, so
+ * Thai mock-chat text falls back to system fonts exactly as before.
+ * font-display: swap avoids invisible text (no FOIT). Only weights used in
+ * src/ are declared (header 600/700; body + mono 400/500/600).
+ */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/playfair-display-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/playfair-display-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/inter-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/inter-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/inter-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono-latin.woff2') format('woff2');
+}
+
+/*
+ * Dark mode base rule (ui-spec.md §1): darker Navy background #001631.
+ * Kept OUTSIDE `@layer base` on purpose — Tailwind v3 drops base-layer rules
+ * whose class selector (`dark`) does not appear in scanned content, which is
+ * the case until the ThemeToggle component exists.
+ */
+.dark body {
+  background-color: #001631;
+  color: #f5f7fa;
+}
+
+/*
+ * Scroll-blend mode (step 10, part 1 — ui-spec.md §5.1). `bg-blend` is added
+ * to <html> by ScrollBackground only while GSAP blending is active (dark
+ * mode, desktop, no-preference — see the blendOn gate). ONLY the
+ * smoothly-blended sections (SMOOTH_INTO in ScrollBackground.tsx:
+ * currently about/skills, plus home as a tween endpoint) go transparent so
+ * the fixed wash layer shows through; hard-cut sections keep their own
+ * solid backgrounds and cover the wash. ID selectors outrank the Tailwind
+ * bg utilities, so no section component needs editing. When the class is
+ * absent (light mode, reduced motion, mobile viewport, no JS) the current
+ * hard-cut backgrounds render exactly as before — in light mode this is the
+ * contrast-correct path, since a flat wash cannot serve opposite-tone
+ * (Navy ↔ White) neighbors sharing one viewport. The footer keeps its own
+ * solid bg (site chrome, outside the blend palette).
+ */
+.bg-blend #home,
+.bg-blend #about,
+.bg-blend #skills {
+  background-color: transparent;
+}
+
+/* Brief color fade for theme swaps while blending (toggled by JS). Scrubbed
+   ScrollTrigger writes bypass this — it only animates the rebuild snap. */
+.theme-fade-blend {
+  transition: background-color 0.5s ease;
+}
+
+/*
+ * Card hover lift, hover-capable pointers only (Bug 1 fix). On touch screens
+ * a tap sticks `:hover`, leaving the card scaled at 1.02 — and a transformed
+ * element's visual overflow counts toward the page's scrollable overflow, so
+ * stuck hover produced persistent horizontal gutters on mobile. Gated behind
+ * both (hover: hover) and no-preference, mirroring the old
+ * `motion-safe:hover:scale-[1.02]` behavior minus the touch leak. The sweep
+ * and shadow hover effects are untouched (clipped / non-overflowing).
+ */
+@media (hover: hover) {
+  @media (prefers-reduced-motion: no-preference) {
+    .card-lift:hover {
+      transform: scale(1.02);
+    }
+  }
+}
+
+@layer base {
+  html {
+    /* Smooth Dark/Light transition per docs/ui-spec.md §5.4 */
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-secondary-light font-body text-primary antialiased;
+    @apply transition-colors duration-500;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-header font-semibold;
+  }
+
+  code,
+  pre,
+  kbd,
+  samp {
+    @apply font-mono;
+  }
+}
