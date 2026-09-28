@@ -512,7 +512,7 @@ check · ➖ not applicable. Full table (tests.md order):
 
 **Pre-launch TODOs (not code defects):** manual end-to-end Contact send test
 (EmailJS creds are now in `.env`); `og:url` deployed URL; `og:image` share
-asset; domain + hosting choice (specification.md §7 was never filled in).
+asset (`public/og-image.png` 1200×630 added 2026-09-28 + `twitter:*` tags; switch to absolute URLs post-deploy); domain + hosting choice (specification.md §7 was never filled in). README.md rewritten 2026-09-28 from verified repo state — remaining placeholders: live-site URL, screenshots, production URL, license choice.
 
 ## 5. Former Open Item: GSAP — RESOLVED
 
